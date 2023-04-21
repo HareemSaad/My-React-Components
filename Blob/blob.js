@@ -64,6 +64,7 @@ export const Blob = (props) => {
 
 // Blob Animation Component
 const BlobAnimation = (props) => {
+  const patternId = `pattern-${Math.floor(Math.random() * 100000)}`; // Generate a unique pattern id
   {console.log(`${props.color} !important`)}
     // Blob animation
     const blob = useRef(null)
@@ -186,13 +187,13 @@ const BlobAnimation = (props) => {
     return (
       <svg className='svg' viewBox="0 0 1000 1000" style={{height: '100% !important', width: '100% !important'}}>
         <defs>
-          <pattern id="image" x="0" y="0" width="100%" height="100%">
+          <pattern id={patternId} x="0" y="0" width="100%" height="100%">
             <image href={props.imgLink} width="100%" x={props.x} y={props.y}/>
           </pattern>
         </defs>
           {/* <path className='blob1' ref={blob} style={{fill: props.color}}/> */}
           {console.log("is blob :: ", props.imgBlob === 'true')}
-          {props.imgBlob === 'true' ? <path className='blob1' ref={blob} style={{height: '100%', width: '100%', transition: '0.2s', strokeLinecap: 'butt', strokeDasharray: '0', fill: 'url(#image)'}}/> : <path className='blob1' ref={blob} style={{height: '100%', width: '100%', transition: '0.2s', strokeLinecap: 'butt', strokeDasharray: '0', fill: props.color}}/>}
+          {props.imgBlob === 'true' ? <path className='blob1' ref={blob} style={{height: '100%', width: '100%', transition: '0.2s', strokeLinecap: 'butt', strokeDasharray: '0', fill: `url(#${patternId})`}}/> : <path className='blob1' ref={blob} style={{height: '100%', width: '100%', transition: '0.2s', strokeLinecap: 'butt', strokeDasharray: '0', fill: props.color}}/>}
 
       </svg>
     )
