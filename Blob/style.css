@@ -1,0 +1,51 @@
+/* .main-wrapper {
+    height: 100% !important;
+    min-height: 100% !important;
+    width: 100%;
+    overflow-x: hidden;
+} */
+
+/* .blob {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* for movement animation (center to bottom right) */
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%); add closing here
+    /* height blob starts with add clossing here
+    height: 400px;
+    width: 400px;
+    border-radius: 50%; 
+    cursor: pointer !important;
+    pointer-events: auto;
+    text-align: center;
+    padding: 5rem;
+    color: var(--pm-8);
+    font-size: var(--text-subtitle-1);
+} */
+
+/* span {
+    position: absolute;
+
+    z-index: 2;
+} */
+
+/* svg {
+    /* position: absolute;
+    top: 0;
+    left: 0; // add closing comment here
+    height: 100% !important;
+    width: 100% !important;
+} */
+
+/* .blob1 {
+    height: 100% !important;
+    width: 100% !important;
+    fill: #ffe8a3 !important;
+    transition: 0.2s;
+    stroke-linecap: butt;
+    stroke-dasharray: 0;
+} */
