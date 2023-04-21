@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap, Sine } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import './style.css';
 
 export const Blob = (props) => {
   
@@ -13,7 +14,7 @@ export const Blob = (props) => {
   
       // Transition of blob animation
       const tl = gsap.timeline({
-        scrollTrigger: {
+        ScrollTrigger: {
           trigger: blobWrapper.current,
           toggleActions: 'play pause reverse reset',
           start: 'center center',
@@ -23,7 +24,7 @@ export const Blob = (props) => {
       });
       tl.to(blobText.current, { innerHTML: props.txt, fontSize: '20px' });
       // animation to shrink the blob to this size
-      !props.shrink ? console.log("no shrink") : tl.to(blob.current, {
+      props.shrink === 'false' ? console.log("no shrink") : tl.to(blob.current, {
           height: props.newHeight,
           width: props.newWidth,
           top: 'unset',
@@ -52,9 +53,9 @@ export const Blob = (props) => {
           color: 'var(--pm-8)',
           fontSize: 'var(--text-subtitle-1)'
         }} ref={blob}>
-        <span ref={blobText} style={{position: 'absolute', zIndex: '2'}}>Do not worry, we have got you covered.</span>
+        <span ref={blobText} style={{position: 'absolute', zIndex: '2'}}></span>
         
-        <BlobAnimation color={props.color}/>
+        <BlobAnimation color={props.color} x={props.x} y={props.y} imgBlob={props.imgBlob} imgLink={props.imgLink}/>
         </div>
 
       </>
@@ -184,8 +185,15 @@ const BlobAnimation = (props) => {
   
     return (
       <svg className='svg' viewBox="0 0 1000 1000" style={{height: '100% !important', width: '100% !important'}}>
-        <path className='blob1' ref={blob} style={{height: '100% !important', width: '100% !important', fill: props.color, transition: '0.2s', strokeLinecap: 'butt', strokeDasharray: '0'}}></path>
+        <defs>
+          <pattern id="image" x="0" y="0" width="100%" height="100%">
+            <image href={props.imgLink} width="100%" x={props.x} y={props.y}/>
+          </pattern>
+        </defs>
+          {/* <path className='blob1' ref={blob} style={{fill: props.color}}/> */}
+          {console.log("is blob :: ", props.imgBlob === 'true')}
+          {props.imgBlob === 'true' ? <path className='blob1' ref={blob} style={{height: '100%', width: '100%', transition: '0.2s', strokeLinecap: 'butt', strokeDasharray: '0', fill: 'url(#image)'}}/> : <path className='blob1' ref={blob} style={{height: '100%', width: '100%', transition: '0.2s', strokeLinecap: 'butt', strokeDasharray: '0', fill: props.color}}/>}
+
       </svg>
     )
   }
-  
